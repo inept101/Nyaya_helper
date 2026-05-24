@@ -1,0 +1,55 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# Backend env & uploads
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/uploads/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
+# Frontend env
+frontend/.env*
+!frontend/.env.local.example
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+
+# Misc
+*.pem
+.vercel
+
+# Claude / AI assistant files
+.claude/
+CLAUDE.md
+AGENTS.md
+.cursorrules
+.cursor/

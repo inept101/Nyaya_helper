@@ -106,3 +106,41 @@ class DraftJudgmentRequest(BaseModel):
 
 class TranslateRequest(BaseModel):
     doc_id: str
+
+
+# ── Legal Search (Indian Kanoon) ─────────────────────────────────────────────
+
+class LegalSearchRequest(BaseModel):
+    query: str
+    doctypes: Optional[str] = None  # e.g. "supremecourt,highcourts"
+    fromdate: Optional[str] = None  # DD-MM-YYYY
+    todate: Optional[str] = None    # DD-MM-YYYY
+    pagenum: int = 0
+
+
+class LegalSearchHit(BaseModel):
+    docid: str
+    title: str
+    headline: str
+    court: Optional[str] = None
+    docsource: Optional[str] = None
+    publishdate: Optional[str] = None
+    citation: Optional[str] = None
+
+
+class LegalSearchResponse(BaseModel):
+    query: str
+    total_found: int
+    hits: list[LegalSearchHit]
+    from_cache: bool = False
+    mock: bool = False
+
+
+class LegalDocResponse(BaseModel):
+    docid: str
+    title: str
+    doc: str
+    court: Optional[str] = None
+    publishdate: Optional[str] = None
+    from_cache: bool = False
+    mock: bool = False

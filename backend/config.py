@@ -26,5 +26,10 @@ class Settings(BaseSettings):
     # App
     upload_dir: str = "./uploads"
 
+    # Indian Kanoon legal search
+    indian_kanoon_api_token: str = ""
+    legal_search_mock_mode: bool = True
+    legal_search_cache_ttl_hours: int = 24 * 7
+
 
 settings = Settings()

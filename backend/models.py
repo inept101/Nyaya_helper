@@ -61,3 +61,12 @@ class Document(Base):
     created_at = Column(DateTime(timezone=True), default=utcnow)
 
     case = relationship("Case", back_populates="documents")
+
+
+class LegalSearchCache(Base):
+    __tablename__ = "legal_search_cache"
+
+    cache_key = Column(String(64), primary_key=True)
+    endpoint = Column(String(50), nullable=False, index=True)
+    response_json = Column(Text, nullable=False)
+    fetched_at = Column(DateTime(timezone=True), default=utcnow, nullable=False)

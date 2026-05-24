@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from config import settings
 from database import init_db
-from routers import ai, auth, cases, documents
+from routers import ai, auth, cases, documents, legal_search
 
 app = FastAPI(title="NyayaHelper AI", version="0.1.0")
 
@@ -21,6 +21,7 @@ app.include_router(auth.router, prefix="/auth", tags=["auth"])
 app.include_router(cases.router, prefix="/cases", tags=["cases"])
 app.include_router(documents.router, prefix="/cases", tags=["documents"])
 app.include_router(ai.router, prefix="/ai", tags=["ai"])
+app.include_router(legal_search.router, prefix="/legal-search", tags=["legal-search"])
 
 
 @app.on_event("startup")

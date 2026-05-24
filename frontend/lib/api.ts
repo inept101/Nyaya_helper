@@ -122,6 +122,55 @@ export async function listDocuments(caseId: string): Promise<DocumentOut[]> {
   return apiFetch(`/cases/${caseId}/documents`);
 }
 
+// ── Legal Search (Indian Kanoon) ──────────────────────────────────────────────
+
+export interface LegalSearchHit {
+  docid: string;
+  title: string;
+  headline: string;
+  court: string | null;
+  docsource: string | null;
+  publishdate: string | null;
+  citation: string | null;
+}
+
+export interface LegalSearchResponse {
+  query: string;
+  total_found: number;
+  hits: LegalSearchHit[];
+  from_cache: boolean;
+  mock: boolean;
+}
+
+export interface LegalDocResponse {
+  docid: string;
+  title: string;
+  doc: string;
+  court: string | null;
+  publishdate: string | null;
+  from_cache: boolean;
+  mock: boolean;
+}
+
+export interface LegalSearchParams {
+  query: string;
+  doctypes?: string;
+  fromdate?: string;
+  todate?: string;
+  pagenum?: number;
+}
+
+export async function searchLegalDb(params: LegalSearchParams): Promise<LegalSearchResponse> {
+  return apiFetch("/legal-search/search", {
+    method: "POST",
+    body: JSON.stringify(params),
+  });
+}
+
+export async function getLegalDoc(docid: string): Promise<LegalDocResponse> {
+  return apiFetch(`/legal-search/doc/${docid}`);
+}
+
 // ── AI Streaming ───────────────────────────────────────────────────────────────
 
 export async function* streamAI(

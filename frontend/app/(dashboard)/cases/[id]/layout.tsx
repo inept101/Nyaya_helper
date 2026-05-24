@@ -9,6 +9,7 @@ const tabs = [
   { label: "Overview", href: "" },
   { label: "AI Insights", href: "/insights" },
   { label: "Research", href: "/research" },
+  { label: "Precedents", href: "/precedents" },
   { label: "Draft Judgment", href: "/draft" },
 ];
 
